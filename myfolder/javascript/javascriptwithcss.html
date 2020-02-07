@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<script type="text/javascript"> 
+
+var name = document.getElementById('name');
+var email = document.getElementById('email');
+var details = document.getElementById('details');
+var password = document.getElementById('password');
+var password_confirm = document.getElementById('cpassword');
+//var bday = document.getElementById('bday');
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var name = document.getElementById('name');
+  var email = document.getElementById('email');
+  var details = document.getElementById('details');
+  var password = document.getElementById('password');
+  var password_confirm = document.getElementById('cpassword');
+  //var age = document.getElementById('age');
+  //var bday = document.getElementById('bday');
+  
+  name.addEventListener('blur', nameverify, false);
+  email.addEventListener('blur', emailverify, false);
+  details.addEventListener('blur',detailsverify,false);
+  password.addEventListener('blur', passwordverify, false);
+  
+  //age.addEventListener('blur',ageverify,false);
+  //bday.addEventListener('blur',bdayverify,false);
+});
+
+
+
+function validateform(){
+
+	if (name.value =="") {
+    
+    document.getElementById('name_error').innerHTML ="name is required";
+    name.focus();
+    return false;
+  }
+  // validate username
+  if (name.value.length < 2) {
+    
+    document.getElementById('name_error').innerHTML = "Username must be at least 2 characters";
+    name.focus();
+    return false;
+  }
+    if (email.value == "/^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/ "){
+    
+    document.getElementById('email_error').innerHTML = "Email is required";
+    email.focus();
+    return false;
+  }
+  
+  if(details.value == ""){
+  	
+  	document.getElementById('details_error').innerHTML = "details are required";
+  	details.focus();
+  	return false;
+  }
+
+  if (password.value == "") {
+    
+    document.getElementById('password_error').innerHTML = "Password is required";
+    password.focus();
+    return false;
+  }
+  // check if the two passwords match
+  if (password.value != password_confirm.value) {
+    //password.style.border = "1px solid red";
+    document.getElementById('pass_confirm_error')..innerHTML = "The two passwords do not match";
+    //password_confirm.style.border = "1px solid red";
+    
+    return false;
+  }
+
+  
+  /*var pattern = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+	if (bday.value == null || bday.value == "" || !pattern.test(bday)) {
+        bday_error.innerHTML="Invalid date of birth\n";
+        bday.focus();
+        return false;
+    }
+
+  if(age.value == "/\s[0-1]{1}[0-9]{0,2}/")
+	{
+		age_error.innerHTML=" please enter only digits";
+		age.focus();
+		return false;
+	}
+}*/
+function nameverify() {
+  if (name.value != "") {
+   //name.style.border = "1px solid #5e6e66";
+   document.getElementById('name_error').innerHTML = "";
+   
+   return true;
+  }
+}
+function emailverify() {
+  if (email.value != "") {
+    //email.style.border = "1px solid #5e6e66";
+    document.getElementById('email_error').innerHTML = "";
+    
+    return true;
+  }
+}
+function passwordverify() {
+  if (password.value != "") {
+    //password.style.border = "1px solid #5e6e66";
+    document.getElementById('pass_error').innerHTML = "";
+   
+    return true;
+  }
+  if (password.value === password_confirm.value) {
+    //password.style.border = "1px solid #5e6e66";
+    document.getElementById('pass_confirm_error').innerHTML = "";
+   
+    return true;
+  }
+}
+
+/*function bdayverify(){
+	if(bday.value != "" ){
+    bday_error.innerHTML="";
+    return true;
+    }
+} 
+function ageverify(){
+	if(age.value != ""){
+		age_error.innerHTML="";
+		return true;
+	}
+}
+function detailsverify(){
+ 	if(details.value != ""){
+ 		details_error.innerHTML =" ";
+ 		return true; 
+  }
+ }
+/*function confirmreset(){
+  return confirm("Do you want to reset the form?");
+ }*/
+
+
+</script>
+
+
+ 
+<body style="border:solid" >
+	<div id="wrapper">
+	<form name="vform" style="text-align:center" onsubmit="return validateform()" method="post">
+	    <div id="name_div">
+   	    Name:<input type="text" name="name" id="name" required> 
+        <br>
+   	    <div id="name_error"></div>
+   	  </div>
+
+      <div id ="email_div">
+        <br>Email: <input type="text" name="email" id="email" autocomplete="on"  size=20px required ><br>
+		    <div id="email_error"></div>
+	    </div>
+
+	    <div id ="details_div">
+		    <br>Details: <textarea rows="3" cols="25" name="details" id="details" required > </textarea><br>
+		    <div id="details_error"></div>
+	    </div>
+
+      <div id ="password_div">
+		    <br>Password:&nbsp;<input type="password" name="password" id="password" size=20px required><br>
+		  </div>
+
+      <div id="pass_confirm_div">
+		    <br> Confirm password: <input type="password" id="cpassword" name="cpassword" size=15px ><br>
+        <div id =" password_error"></div>
+      </div>
+
+      <div id="age_div">
+        <br>Age: &nbsp; <input type="number" name="age" id="age" required><br>
+		    <div id ="age_error"></div>
+	    </div>
+
+      <div id="bday_div">
+		    <br>Birthdate: <input type="date" name="bday" id="bday"> <!--input type="month" name="month"> 	<input type="number" name="year" min="1950" max="2020"--><br>
+	 	    <div id ="bday_error"></div>
+      </div>
+
+      <div id="gender_div">
+		    <br>Gender:<input type="radio" name="gender" id="gender" value="female" >Female
+		    <input type="radio" value="male" name="gender" id="gender">male<br><br>
+        <div id ="gender_error"></div>
+      </div>
+
+      <div id= "check_div">
+		    which language you work on:<br>
+		    <input type="checkbox" name="language1" value="java">Java
+        <br>
+        <input type="checkbox" name="language2" value="php">PHP
+        <br>
+        <input type="checkbox" name="language3" value="cpp">C++
+        <br>
+        <div id="check_error" > </div>
+      </div>
+
+      <div>
+    	 <br><input type="submit" value="submit"  >
+    	 <input type="Reset" value="cancel"><br>
+      </div>
+  </div>
+  </form>
+</body>
+</html>
+
+

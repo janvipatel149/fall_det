@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<script>
+var namepattern=/^[a-zA-Z]+$/
+var emailpattern =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,4})$/
+var emailpattern2 =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*$/
+ 
+function validateform() { 
+	var x=document.forms["form1"]["name"];
+	if (x.value=="") {
+		document.getElementById('pointfn').innerHTML="Please enter the name.";
+		x.focus();
+		return false;
+	} else if(x.value.length>=2 || x.value.length<=10) {
+  x.value="";
+  document.getElementById('pointfn').innerHTML="Please enter characters between 2 to 10.";
+  x.focus();
+  return false;
+   }
+ else if ((!namepattern.test(x.value)))
+   {
+  document.getElementById('pointfn').innerHTML="Please enter only alphabets.";
+    x.value="";
+  x.focus();
+  return false;
+   }
+
+ document.getElementById('pointfn').innerHTML='';
+
+ x=document.form1.email;
+ if(x.value=="")
+ {
+  x.value="";
+  document.getElementById('pointemail').innerHTML="Please enter the email id.";
+  x.focus();
+  return false;
+ }
+ else if(!emailpattern.test(x.value))
+ {
+  x.value="";
+  document.getElementById('pointemail').innerHTML="Please enter a valid email address.";
+  x.focus();
+  return false;
+ }
+document.getElementById('pointemail').innerHTML="";
+
+x= document.getElementById("details");
+ if(x.value==null || x.value=="" )
+ {
+  x.value="";
+  document.getElementById('pointadrs').innerHTML="Please enter the details.";
+  x.focus();
+  return false;
+ }
+ else if(x.value.length<20)
+   {
+  x.value="";
+  document.getElementById('pointadrs').innerHTML="Please enter atleast 20 characters.";
+  x.focus();
+  return false;
+ }
+ document.getElementById('pointadrs').innerHTML="";
+
+
+
+if((document.form1.gender[0].checked==false)&&(document.form1.gender[1].checked==false))
+ {
+  document.form1.gender[0].focus();
+  document.getElementById('pointgendr').innerHTML='Please select a gender.';
+  return false;
+ }
+ document.getElementById('pointgendr').innerHTML='';
+
+return confirm("Do you want to submit the form?");
+}
+
+var checkboxes = document.getElementsByName("sub[]");
+    for(var i=0; i < checkboxes.length; i++) {
+        if(checkboxes[i].checked) {
+            // Populate hobbies array with selected values
+            sub.push(checkboxes[i].value);
+        }
+    }
+
+function vdate(dd,mm,yyyy)
+{
+  var dateobj = new Date(yyyy, mm, dd);
+  var datecurrent= new Date();
+  if((dateobj.getMonth()!=mm)||(dateobj.getDate()!=dd)||(dateobj.getFullYear()!=yyyy)||(dateobj>datecurrent))
+  {
+   return false;
+  }
+  return true;
+ }
+
+
+
+
+
+
+
+
+
+
+
+function confirmreset()
+ {
+  if(confirm("Do you want to reset the form?"))
+{	
+document.getElementById('pointfn').innerHTML="";
+ document.getElementById('pointln').innerHTML="";
+ document.getElementById('pointgendr').innerHTML="";
+ document.getElementById('pointdob').innerHTML="";
+ document.getElementById('pointadrs').innerHTML="";
+ document.getElementById('pointcontct').innerHTML="";
+ document.getElementById('pointemail').innerHTML="";
+ return true;
+}
+else
+ return false;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<body style="border:solid" >
+
+<form style="text-align:center" onsubmit= "return validateform()">
+	<br>Name: <input type="text" name="name" required >
+	<br>
+	<br>Email: <input type="text" name="email" autocomplete="off" size=20px><br>
+	<br>Details: <textarea rows="3" cols="25" name="details"> </textarea><br>
+	<br>Password:&nbsp;<input type="password" name="password" size=20px><br>
+<br>Confirm password: <input type="password" name="password" size=15px><br>
+	<br>Age: &nbsp; <input type="number" name="age"><br>
+	<br>Birthdate: <input type="date" name="date"> <!--input type="month" name="month"> 	<input type="number" name="year" min="1950" max="2020"--><br>
+	<br>Gender:<input type="radio" name="female" value="Female">Female
+	<input type="radio" value="male">male<br><br>
+	which language you work on:<br>
+
+	<input type="checkbox" name="language1" value="java">Java
+         <br>
+         <input type="checkbox" name="language2" value="php">PHP
+         <br>
+         <input type="checkbox" name="language3" value="cpp">C++
+         <br>
+	
+	<br><input type="submit" value="Submit"> <input type="Reset" value="cancel"><br>
+
+	
+</form>
+
+</body>
+
+</html>
+	
+  
+ 
+

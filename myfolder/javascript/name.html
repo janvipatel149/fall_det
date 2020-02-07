@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<script type="text/javascript">
+	var name = document.forms['vform']['name'];
+	name.addEventListener('blur', nameverify, true);
+	var name_error = document.getElementById('name_error');
+
+	function validateform(){
+	if (name.value =="") {
+    name.style.border = "1px solid red";
+    document.getElementById('name_div').style.color = "red";
+    name_error.textContent = "name is required";
+    name.focus();
+    return false;
+  }
+  // validate username
+  if (name.value.length < 2) {
+    name.style.border = "1px solid red";
+    document.getElementById('name_div').style.color = "red";
+    name_error.textContent = "Username must be at least 2 characters";
+    name.focus();
+    return false;
+  }
+ }
+
+function nameverify() {
+  if (name.value != "") {
+   name.style.border = "1px solid #5e6e66";
+   document.getElementById('name_div').style.color = "#5e6e66";
+   name_error.innerHTML = "";
+   return true;
+  }
+}
+</script>
+<body style="border:solid" >
+	<div id="wrapper">
+	<form name="vform" style="text-align:center" onsubmit="return validateform()">
+	    <div id="name_div">
+   	    Name:<input type="text" name="name" > 
+        <br>
+   	    <div id="name_error"></div>
+   	  </div>
+
+      <div>
+    	 <br><input type="submit" value="Submit"  >
+    	 <input type="Reset" value="cancel" onclick="return confirmreset()"><br>
+      </div>
+  </div>
+  </form>
+</body>
+</html>

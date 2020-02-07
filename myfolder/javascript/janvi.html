@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+
+<script type="text/javascript">
+	function val(){
+	 
+     var uname = document.getElementById('username').value;
+     if(uname==" "){
+         document.getElementById("error").innerHTML="Enter a username";
+         uname.focus();
+         return false;
+     }
+     else if(uname.length>=2 || uname.length<=10) {
+        uname=" ";
+        document.getElementById('error').innerHTML="Please enter characters between 2 to 10.";
+        uname.focus();
+        return false;
+     }
+     var namepattern=/^[a-z A-Z]+$/ ;
+     else if ((!namepattern.test(uname))){
+      document.getElementById('error').innerHTML="Please enter only alphabets.";
+      uname="";
+      uname.focus();
+      return false;
+  	 }
+  	document.getElementById('error').innerHTML='';
+  	//email
+  	var emailpattern =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,4})$/ ;
+  	var emailpattern2 =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*$/ ;
+  	var e=document.getElementById('email').value;
+  	
+  	if(!e){
+    	document.getElementById('e_error').innerHTML="Please enter the email id.";
+    	e.focus();
+   		return false;
+  	}
+  	else if(!emailpattern.test(e)) {
+    	e=" ";
+    	document.getElementById('e_error').innerHTML="Please enter a valid email address.";
+    	e.focus();
+    	return false;
+  }
+  //document.getElementById('e_error').innerHTML="";
+
+  x= document.getElementById("details").value;
+  if(!x)
+  {
+    //x.value="";
+    document.getElementById('d_error').innerHTML="Please enter the details.";
+    x.focus();
+    return false;
+  }
+  else if(x.length<20) {
+    x="";
+    document.getElementById('d_error').innerHTML="Please enter atleast 20 characters.";
+    x.focus(); 
+    return false;
+  }
+    document.getElementById('d_error').innerHTML=" ";
+
+
+
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    var message = document.getElementById('error_pass');
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+
+    if(pass1.value.length > 5 && pass2.value.length > 5)
+    {
+        pass1.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "character number ok!"
+
+        if(pass1.value == pass2.value)
+        {
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "ok!"
+        }
+        else
+        {
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = " These passwords don't match"
+        }
+    }
+    else
+    {
+        pass1.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = " you have to enter at least 6 digit!"
+    }
+
+
+
+var age = document.getElementById('age').value;
+     if(!age){
+         document.getElementById("age_error").innerHTML="Enter a valid age";
+         return false;
+     }
+      else
+      {  return true;
+     }
+var bday = document.getElementById("bday").value;
+    if (!bday) {
+        document.getElementById("bday_error").innerHTML="enter valid bday";
+        return false;
+      }
+        else{
+          return true;
+      }
+
+var femaleC=document.getElementById('female'); // It will return you html element
+var maleC=document.getElementById('male');
+
+  if(!(femaleC.checked)||!(maleC.checked))
+  {
+    document.getElementById('gender_error').innerHTML="Gender must be choosen";
+  }
+    else
+    {
+      alert("proceed");
+    }
+
+
+
+
+
+
+</script>
+	<form method="post" onsubmit="return val()">
+    <div id="error">
+    	Name: <input type="text" id="username" name="username" required> 
+    </div>  
+    <div id="e_error">
+    	Email: <input type="text" id="emaill" name="email"> 
+    </div>  
+    <div id="d_error">
+    	details: <input type="text" id="details" name="details">
+    </div> 
+
+    <input name="password" type="password" placeholder="password"  id="pass1">
+    <input name="repeatpassword" type="password" placeholder="confirm password" id="pass2" >
+    <div id="error_pass"></div>
+
+    <div id="age_error">
+        <br>Age: &nbsp; <input type="number" name="age" id="age" ><br>
+    </div>
+    <div id="gender_error">
+        <br>Gender:<input type="radio" name="gender" id="female" value="female" >Female
+        <input type="radio" value="male" name="gender" id="male">male<br><br>
+    </div>
+
+    <div id= "check_er">
+        which language you work on:<br>
+        <input type="checkbox" name="language1" value="java" id="1">Java
+        <br>
+        <input type="checkbox" name="language2" value="php" id="2">PHP
+        <br>
+        <input type="checkbox" name="language3" value="cpp" id="3">C++
+        <br>
+    </div>
+
+
+    <input  type="submit" id="submit" name="submit">
+    <input type="reset" value="cancel" id="reset"><br>
+  </form>
+  </html>
+  

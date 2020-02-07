@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+
+<script type="text/javascript">
+	function val()
+  {
+    var valid = true;
+    var language = document.getElementsByClassName('language');
+    var checkedData=[];
+    var numOfCheckbox = language.length;
+    var getCheckboxData; 
+    for(i=0; i<numOfCheckbox;i++)
+    {
+      if(language[i].checked==true)
+      {
+        checkedData.push(language[i].value);
+      }
+    }
+
+    var uname = document.getElementById('username').value;
+    if(uname=='' || uname == null)
+    {
+        valid=false;
+        var div = document.getElementById('error'); 
+        div.innerHTML = "* Please enter a name.";
+    }
+    else
+    {
+      document.getElementById('error').innerHTML='';
+    }
+    /*else if(uname.length>=2 || uname.length<=10) {
+        uname=" ";
+        document.getElementById('error').innerHTML="Please enter characters between 2 to 10.";
+        uname.focus();
+        return false;
+    }
+     var namepattern=/^[a-z A-Z]+$/ ;
+     else if ((!namepattern.test(uname))){
+      document.getElementById('error').innerHTML="Please enter only alphabets.";
+      uname="";
+      uname.focus();
+      return false;
+  	 }
+  	document.getElementById('error').innerHTML='';*/
+  	//email
+  	var emailpattern =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,4})$/ ;
+  	var emailpattern2 =/^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*$/ ;
+  	var email=document.getElementById('email').value;
+  	
+  	if(email=='' || email==null)
+    {
+      valid=false;
+      var div = document.getElementById('email_error');
+      div.innerHTML = "* Please enter email.";
+    }
+    else
+    {
+      document.getElementById('email_error').innerHTML='';
+    }
+  //document.getElementById('e_error').innerHTML="";
+
+  x= document.getElementById("details").value;
+  if(!x)
+  {
+    //x.value="";
+    document.getElementById('details_error').innerHTML="Please enter the details.";
+    x.focus();
+    return false;
+  }
+  else if(x.length<20) {
+    x="";
+    document.getElementById('details_error').innerHTML="Please enter atleast 20 characters.";
+    x.focus(); 
+    return false;
+  }
+    document.getElementById('details_error').innerHTML=" ";
+
+
+
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    if(pass1=='' || pass1==null)
+    {
+      valid=false;
+      var div = document.getElementById('pass1_error');
+      div.innerHTML = "* Please enter password.";
+    }
+    else
+    {
+      document.getElementById('pass1_error').innerHTML='';
+    }
+    if(pass2=='' || pass2==null)
+    {
+      valid=false;
+      var div = document.getElementById('pass2_error');
+      div.innerHTML = "* Retype your password here.";
+    }
+    else
+    {
+      document.getElementById('pass2_error').innerHTML='';
+    }
+
+    if(pass1!='' && pass2!='')
+    {
+    if(pass1 != pass2)
+    {
+      valid=false;
+      var div = document.getElementById('pass2_error');
+      div.innerHTML = "* Password do not match. Please check it.";
+    }
+    
+    if(passw1 == pass2)
+    {
+      document.getElementById('pass2_error').innerHTML='';
+    }
+  }
+
+    if(checkedData=='' || checkedData==null)
+    {
+      valid=false;
+      var div = document.getElementById('language_error');
+      div.innerHTML = "* Please choose any language.";
+    }
+    else
+    {
+      document.getElementById('language_error').innerHTML='';
+    }
+
+    if(valid==false)
+    {
+      return false;
+    }
+    else
+    {
+      alert("You form is ready to submit.");
+      return true;
+    } 
+}
+
+
+
+    var age = document.getElementById('age').value;
+     if(!age){
+         document.getElementById("age_error").innerHTML="Enter a valid age";
+         return false;
+     }
+      else
+      {  return true;
+     }
+var bday = document.getElementById("bday").value;
+    if (!bday) {
+        document.getElementById("bday_error").innerHTML="enter valid bday";
+        return false;
+      }
+        else{
+          return true;
+      }
+
+var femaleC=document.getElementById('female'); 
+var maleC=document.getElementById('male');
+
+  if(!(femaleC.checked)||!(maleC.checked))
+  {
+    document.getElementById('gender_error').innerHTML="Gender must be choosen";
+  }
+    else
+    {
+      alert("proceed");
+    }
+
+
+
+
+
+
+</script>
+	<form method="post" onsubmit="return val()">
+    <div id="error">
+    	Name: <input type="text" id="username" name="username" required> 
+    </div>
+
+    <div id="email_error">
+    	Email: <input type="text" id="emaill" name="email"> 
+    </div> 
+
+    <div id="details_error"><br>
+      Details: <textarea rows="3" cols="25" name="details" id="details" required> </textarea><br>
+    </div> 
+
+    <div id="pass1_error"> 
+        password:<input name="password" type="password" placeholder="password"  id="pass1"><br>
+        confirm password:<input name="repeatpassword" type="password" placeholder="confirm password" id="pass2" >
+    <div id="pass2_error"></div>
+
+    </div>
+
+    <div id="age_error">
+        <br>Age: &nbsp; <input type="number" name="age" id="age" ><br>
+    </div>
+
+    <div id="bday_div">
+        <br>Birthdate: <input type="date" name="bday" id="bday"> <!--input type="month" name="month">   <input type="number" name="year" min="1950" max="2020"--><br>
+        <div id ="bday_error"></div>
+    </div>
+
+    <div id="gender_error">
+        <br>Gender:<input type="radio" name="gender" id="female" value="female" checked>female
+        <input type="radio" value="male" name="gender" id="male">male<br><br>
+    </div>
+
+
+    <div id="language_error" class="error1">
+        which language you work on:<br>
+        <input type="checkbox" name="language[]" class="language"  value="java" id="1">Java
+        <br>
+        <input type="checkbox" name="language[]"  class="language" value="php" id="2">PHP
+        <br>
+        <input type="checkbox" name="language[]" class="language" value="cpp" id="3">C++
+        <br>
+    </div>
+
+
+    <input  type="submit" id="submit" name="submit">
+    <input type="reset" value="cancel" id="reset"><br>
+  </form>
+  </html>
+  

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> validation using jQuery</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">	
+	</script>
+	<script>
+
+		$(document).ready(function(){
+			$("form").submit(function(){
+				alert("submit");
+			});
+		});
+		document.getElementById("form").onreset = function() {myFunction()};
+
+		function myFunction() {
+  		document.getElementById("demo").innerHTML = "The form was reset";	
+
+	</script>
+</head>
+<body>
+	<form name="form"action="" method="post" onreset="myFunction()" onsubmit="return val()">
+    <div id="error">
+    	Name: <input type="text" id="username" name="username"> 
+    </div>
+
+    <div id="email_error">
+    	Email: <input type="text" id="emaill" name="email"> 
+    </div> 
+
+    <div id="details_error"><br>
+      Details: <textarea rows="3" cols="25" name="details" id="details"> </textarea><br>
+    </div> 
+
+    <div id="pass1_error"> 
+        password:<input name="password" type="password" placeholder="password"  id="pass1"><br>
+        confirm password:<input name="repeatpassword" type="password" placeholder="confirm password" id="pass2" >
+    <div id="pass2_error"></div>
+
+    </div>
+
+    <div id="age_error">
+        <br>Age: &nbsp; <input type="number" name="age" id="age" ><br>
+    </div>
+
+    <div id="bday_div">
+        <br>Birthdate: <input type="date" name="bday" id="bday"> <!--input type="month" name="month">   <input type="number" name="year" min="1950" max="2020"--><br>
+        <div id ="bday_error"></div>
+    </div>
+
+    <div id="gender_error">
+        <br>Gender:<input type="radio" name="gender" id="female" value="female" checked>female
+        <input type="radio" value="male" name="gender" id="male">male<br><br>
+    </div>
+
+
+    <div id="language_error" class="error1">
+        which language you work on:<br>
+        <input type="checkbox" name="language[]" class="language"  value="java" id="1">Java
+        <br>
+        <input type="checkbox" name="language[]"  class="language" value="php" id="2">PHP
+        <br>
+        <input type="checkbox" name="language[]" class="language" value="cpp" id="3">C++
+        <br>
+    </div>
+
+
+    <input  type="submit" id="submit" name="submit" value="Submit">
+    <input type="reset" value="reset" name="reset" id="reset"><br>
+  </form>
+  		 <p id='demo'> </p>
+</body>
+</html>
