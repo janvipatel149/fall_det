@@ -1,0 +1,224 @@
+<div class="section page-width" data-section-id="{{ section.id }}" data-section-type="quotes">
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+  <style>
+  	.quotes-image{
+      	margin-left: auto;
+    	margin-right: auto;
+        border-radius: 50%;
+    	margin-bottom: 20px;
+    }
+  </style>  
+  {% if section.blocks.size > 0 %}
+    <div class="quotes-wrapper">
+      <div class="quotes-slider" id="Quotes-{{ section.id }}" data-count="{{ section.blocks.size }}">
+        {% for block in section.blocks %}
+          <div class="quotes-slide--{{ block.id }}" {{ block.shopify_attributes }}>
+            <blockquote class="quotes-slider__text text-center">
+              {% if block.settings.image != blank %}
+             	<img class="quotes-image" src="{{ block.settings.image | img_url : '100x100' }}" alt="{{ block.settings.image.alt }}" >
+              {% else %}
+        	    {% comment %}{% assign user_img = 'no-user.png' | asset_img_url : '100x100', crop: 'top' %}      
+         		  <img class="quotes-image" src="{{ user_img }}" alt="{{ block.settings.title | escape }}" >
+                {% endcomment%}
+                <img class="default-testimonial-image" src="{{ 'user-default.svg' | asset_url }}" alt="{{ shop.name}} testimonial" />
+              {% endif %}
+              <span class="quote-icon">{% include 'icon-quote' %}</span>              
+     		  {% if block.settings.quote != blank %}
+                <div class="rte-setting rte">{{ block.settings.quote }}</div>
+              {% endif %}
+              {% if block.settings.title != blank %}
+                <cite>{{ block.settings.title | escape }}</cite>
+              {% endif %}
+            </blockquote>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": {
+    "en": "Testimonials",
+    "de": "Testimonials",
+    "es": "Testimonios",
+    "fr": "Témoignages",
+    "it": "Testimonial",
+    "ja": "お客様の声",
+    "nl": "Getuigenissen",
+    "pt-BR": "Depoimentos",
+    "zh-CN": "感言",
+    "zh-TW": "推薦文"
+  },
+  "class": "index-section",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "en": "Heading",
+        "de": "Titel",
+        "es": "Título",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "nl": "Kop",
+        "pt-BR": "Título",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      },
+      "default": {
+        "en": "Testimonials",
+        "de": "Testimonials",
+        "es": "Testimonios",
+        "fr": "Témoignages",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "nl": "Getuigenissen",
+        "pt-BR": "Depoimentos",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": {
+        "en": "Testimonial",
+        "de": "Testimonial",
+        "es": "Testimonio",
+        "fr": "Témoignages",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "nl": "Testimonial",
+        "pt-BR": "Depoimento",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "en": "Author",
+            "de": "Autor",
+            "es": "Autor",
+            "fr": "Auteur",
+            "it": "Autore",
+            "ja": "執筆者",
+            "nl": "Auteur",
+            "pt-BR": "Autoria",
+            "zh-CN": "作者",
+            "zh-TW": "作者"
+          },
+          "default": {
+            "en": "Customer name",
+            "de": "Kundenname",
+            "es": "Nombre del cliente",
+            "fr": "Nom du client",
+            "it": "Nome del cliente",
+            "ja": "顧客名",
+            "nl": "Klantnaam",
+            "pt-BR": "Nome do cliente",
+            "zh-CN": "顾客姓名",
+            "zh-TW": "顧客姓名"
+          }
+        },
+		{
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "en": "Image",
+            "de": "Foto",
+            "es": "Imagen",
+            "fr": "Image",
+            "it": "Immagine",
+            "ja": "画像",
+            "nl": "Afbeelding",
+            "pt-BR": "Imagem",
+            "zh-CN": "图片",
+            "zh-TW": "圖片"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": {
+            "en": "Text",
+            "de": "Text",
+            "es": "Texto",
+            "fr": "Texte",
+            "it": "Testo",
+            "ja": "テキスト",
+            "nl": "Tekst",
+            "pt-BR": "Texto",
+            "zh-CN": "文本",
+            "zh-TW": "文字"
+          },
+          "default": {
+            "en": "<p>Add content to share testimonials about your store, products, collections and blog posts which is review by your customers.</p>",
+            "de": "<p>Fügen Sie Inhalte hinzu, um Erfahrungsberichte zu Ihrem Geschäft, Ihren Produkten, Sammlungen und Blogeinträgen auszutauschen, die von Ihren Kunden überprüft werden.</p>",
+            "es": "<p>Agregue contenido para compartir testimonios sobre su tienda, productos, colecciones y publicaciones de blog que es revisado por sus clientes.</p>",
+            "fr": "<p>Ajoutez du contenu pour partager des témoignages sur votre magasin, vos produits, vos collections et vos articles de blog, qui est examiné par vos clients.</p>",
+            "it": "<p>Aggiungi contenuti per condividere testimonianze sul tuo negozio, prodotti, collezioni e post di blog che vengono esaminati dai tuoi clienti.</p>",
+            "ja": "<p>コンテンツを追加して、顧客がレビューしたストア、製品、コレクション、ブログ投稿についての声を共有します。</p>",
+            "nl": "<p>Voeg inhoud toe om getuigenissen over uw winkel, producten, collecties en blogberichten te delen die door uw klanten worden beoordeeld.</p>",
+            "pt-BR": "<p>Adicione conteúdo para compartilhar depoimentos sobre sua loja, produtos, coleções e postagens no blog, que são analisados ​​por seus clientes.</p>",
+            "zh-CN": "<p>添加内容以共享有关您的商店，产品，收藏和博客文章的推荐，这些评论将由您的客户审查。</p>",
+            "zh-TW": "<p>添加內容以共享有關您的商店，產品，收藏和博客文章的推薦，這些評論將由您的客戶審查。</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Testimonials",
+        "de": "Testimonials",
+        "es": "Testimonios",
+        "fr": "Témoignages",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "nl": "Getuigenissen",
+        "pt-BR": "Depoimentos",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      },
+      "category": {
+        "en": "Text",
+        "de": "Text",
+        "es": "Texto",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "nl": "Tekst",
+        "pt-BR": "Texto",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      },
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
